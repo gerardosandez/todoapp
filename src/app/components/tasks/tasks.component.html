@@ -1,0 +1,34 @@
+<app-list-tasks (sendID)="getID($event)"></app-list-tasks>
+
+<div tabindex="-1" class="modal fade mt-5 pt-5" id="editModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Editar tarea</h5>
+        <button type="button" data-bs-dismiss="modal" class="btn-close"></button>
+      </div>
+      <div class="modal-body">
+        <form #myForm>
+          <div class="form-group">
+            <label>Titulo</label>
+            <input type="text" name="title" class="form-control" *ngIf="taskFound" [(ngModel)]="taskFound.title">
+          </div>
+
+          <div class="form-group">
+            <label>Fecha de finalización</label>
+            <input type="date" name="end_date" class="form-control" *ngIf="taskFound" [(ngModel)]="taskFound.end_date">
+          </div>
+
+          <div class="form-group">
+            <label>Descripcion</label>
+            <textarea name="description" class="form-control" *ngIf="taskFound" [(ngModel)]="taskFound.description"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="editTask()">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">Nueva tarea</h4>
+  </div>
+
+  <div class="card-body">
+    <form>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-3">
+            <label>Título</label>
+            <input type="text" name="title" class="form-control" [(ngModel)]="newTask.title">
+          </div>
+          <div class="col-md-3">
+            <label>Fecha de finalización</label>
+            <input type="date" name="end_date" class="form-control" [(ngModel)]="newTask.end_date">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-9">
+            <label>Descripción</label>
+            <textarea name="description" class="form-control" [(ngModel)]="newTask.description"></textarea>
+          </div>
+          <div class="col-md-3 d-flex align-items-center">
+            <button type="button" class="btn btn-success" (click)="addTask()">Agregar tarea</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="container mt-3">
+  <h4>Mis tareas</h4>
+
+  <div class="btn-group" role="group">
+    <input type="radio" class="btn-check btn-sm" name="btnradio" id="btnradio3" autocomplete="off"
+           (change)="setFilter('pending')" checked
+    >
+    <label class="btn btn-outline-secondary" for="btnradio3">Pendientes</label>
+
+    <input type="radio" class="btn-check btn-sm" name="btnradio" id="btnradio2" autocomplete="off"
+           (change)="setFilter('completed')"
+    >
+    <label class="btn btn-outline-success" for="btnradio2">Completadas</label>
+  </div>
+
+  <div class="col-md-12">
+    <div class="card-group" *ngFor="let task of tasks; let i = index">
+      <div class="card" *ngIf="filter === task.status">
+        <div class="card-body">
+          <h5>{{ task.title }}</h5>
+          <p class="card-text">{{ task.description }}</p>
+
+          <div class="form-check form-switch">
+            <input type="checkbox" role="switch" class="form-check-input" [id]="task.id" [checked]="task.status"
+                   [(ngModel)]="task.status"
+            >
+            <label [for]="task.id" class="form-check-label">
+              {{ (task.status) ? 'Tarea terminada' : 'Terminar tarea' }}
+            </label>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <div class="d-grid gap-1 d-md-flex justify-content-md-end">
+            <ng-container *ngIf="task.status !== true">
+              <button type="button" data-bs-toggle="modal" data-bs-target="#editModal" class="btn btn-primary"
+                      (click)="editTask(task.id)"
+              >
+                Editar
+              </button>
+            </ng-container>
+            <button type="button" class="btn btn-danger" (click)="deleteTask(i)">Eliminar</button>
+          </div>
+          <p class="card-text"><small class="text-muted">
+            {{ (task.status) ? '' : 'Se debe concluir el ' + task.end_date }}
+          </small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
